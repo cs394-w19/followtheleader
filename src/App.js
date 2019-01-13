@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Card from './Components/Card.js'
 import Settings from './Components/Settings.js'
 import Header from './Components/Header.js'
+import DistanceSlider from './Components/DistanceSlider'
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           {data.map((data,index) => (
             <Card propdata={data}/>
           ))}
+          <DistanceSlider handleDistanceChanged={v => console.log(v)} />
         </Body>
       </Grid>
     );
