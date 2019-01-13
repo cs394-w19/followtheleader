@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import Card from './Components/Card.js'
 import Settings from './Components/Settings.js'
 import Header from './Components/Header.js'
@@ -14,17 +15,31 @@ class App extends Component {
                 {'place': 'Spac', 'tag': 'Get the the Gym!',
                               'distance': '.8 miles'}];
     return (
-      <div>
+      <Grid>
         <Header/>
-        <Settings/>
-        <Card propdata={data[0]}/>
-        <Card propdata={data[1]}/>
-        <Card propdata={data[2]}/>
-        <Card propdata={data[3]}/>
-
-      </div>
+        <Body>
+          {data.map((data,index) => (
+            <Card propdata={data}/>
+          ))}
+        </Body>
+      </Grid>
     );
   }
 }
+
+const Grid = styled.div`
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: 75px 1fr;
+`;
+
+const Body = styled.div`
+  grid-row: 2;
+  width: 100%;
+  height: 100%;
+  background-color: #eaeaea;
+`;
+
+
 
 export default App;

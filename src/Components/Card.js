@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './Card.css'
+import styled from 'styled-components';
 
 
 class Card extends Component{
   render() {
     let data = this.props.propdata
     return (
-      <div id='main_card'>
+      <CardContainer>
         <p>
           {data['place']}
         </p>
@@ -16,9 +16,15 @@ class Card extends Component{
         <p>
           {data['distance']}
         </p>
-      </div>
+      </CardContainer>
     );
   }
 }
+
+const CardContainer = styled.div`
+  background-color: lightgray;
+  border-radius: 10px;
+  margin: 10px 15px;
+`;
 
 export default Card;
