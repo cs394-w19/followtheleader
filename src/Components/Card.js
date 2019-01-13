@@ -17,6 +17,7 @@ class Card extends Component{
         <p>
           {data['distance']}
         </p>
+        
       </div>
     );
   }
