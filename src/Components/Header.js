@@ -4,9 +4,11 @@ import './Header.css'
 class Header extends Component {
   render() {
     return (
-      <div id="header_text">
-        <p>Follow The Leader</p>
-      </div>
+      <center>
+        <div id="header_text">
+          <p>Follow The Leader</p>
+        </div>
+      </center>
     );
   }
 }
