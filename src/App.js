@@ -8,7 +8,7 @@ class App extends Component {
     let data = [{'place': 'Main Library', 'tag': 'Worst place on campus',
                   'distance': '1 miles'},
                 {'place': 'Lake Front', 'tag': 'Best place on campus',
-                              'distance': '.2 miles'},
+                              'distance': '3 miles'},
                 {'place': 'The Rock', 'tag': 'More paint than rock at this point',
                               'distance': '5 miles'},
                 {'place': 'Spac', 'tag': 'Get the the Gym!',
