@@ -71,13 +71,5 @@
   {"type":  "Administrative", "building":  "Music Administration Building", "opened":  "1874", "location":  "711 Elgin Road"},
   {"type":  "Administrative", "building":  "Norris University Center", "opened":  "1972", "location":  "1999 Campus Drive"},
   {"type":  "Administrative", "building":  "Rebecca Crown Center", "opened":  "1968", "location":  "633 Clark Street"},
-  {"type":  "Administrative", "building":  "Segal Visitors Center", "opened":  "NA", "location":  "1841 Sheridan Rd"}],
-"type":[
-    {"name": "Library"},
-    {"name": "Performing arts"},
-    {"name": "Science and technology"},
-    {"name": "Academic"},
-    {"name": "Religious"},
-    {"name": "Atheletic"},
-    {"name": "Administrative"}]
+  {"type":  "Administrative", "building":  "Segal Visitors Center", "opened":  "NA", "location":  "1841 Sheridan Rd"}]
 }
