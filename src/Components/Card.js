@@ -36,10 +36,10 @@ class Card extends Component{
       <CardContainer>
 
         <CardTitle>
-          {data['place']}
+          {data['building']}
         </CardTitle>
         <CardTag>
-          {data['tag']}
+          {data['type']}
         </CardTag>
         <CardDistance>
           {data['distance']}
@@ -75,6 +75,7 @@ const CardImage = styled.img`
 const CardTitle = styled.h3`
   margin:0px;
   font-size:24px;
+  overflow:hidden;
   white-space:nowrap;
   text-overflow: ellipsis;
   width:calc(100% - 120px);
