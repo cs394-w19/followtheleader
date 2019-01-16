@@ -3,37 +3,8 @@ import styled from 'styled-components';
 import Card from './Components/Card.js'
 import Header from './Components/Header.js'
 import DistanceSlider from './Components/DistanceSlider'
-import data from './location.json';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      locations: [],
-      load: 8,
-      radius: 2.5,
-      maxLoad: 0
-    }
-
-    this.updateDistance = this.updateDistance.bind(this);
-  }
-
-  componentWillMount = () => {
-    this.setState({ locations: data.location, maxLoad: data.location.filter(location => location.distance <= this.state.radius).length });
-  };
-
-  loadMore = () => {
-    let numNewPosts = 8
-    this.setState({ load: this.state.load + numNewPosts });
-  };
-
-  updateDistance = ratio => {
-    let maxRadius = 5;
-    let newRadius = ratio/10*maxRadius;
-    let newMaxLoad = this.state.locations.filter(location => location.distance <= newRadius).length;
-    this.setState({ radius: newRadius, maxLoad: newMaxLoad, load: 8 });
-  };
-
   render() {
     return (
       <Grid>
@@ -59,16 +30,5 @@ const Body = styled.div`
   padding-top:75px;
   background-color: #F7F7FF;
 `;
-
-const LoadMore = styled.div`
-  margin: 10px 15px;
-  text-align: center;
-  max-width:100%;
-
-  :hover {
-    cursor: pointer;
-  }
-`
-
 
 export default App;
