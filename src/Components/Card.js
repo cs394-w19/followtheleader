@@ -8,13 +8,13 @@ class Card extends Component{
     return (
       <CardContainer>
         <p>
-          {data['place']}
+          {data['building']}
         </p>
         <p>
-          {data['tag']}
+          {data['type']}
         </p>
         <p>
-          {data['distance']}
+          {data['location']}
         </p>
       </CardContainer>
     );
@@ -22,7 +22,7 @@ class Card extends Component{
 }
 
 const CardContainer = styled.div`
-  background-color: lightgray;
+  background-color: lightgrey;
   border-radius: 10px;
   margin: 10px 15px;
 `;
