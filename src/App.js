@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Card from './Components/Card.js'
 import Header from './Components/Header.js'
 import DistanceSlider from './Components/DistanceSlider'
-
 import data from './location.json';
 
 class App extends Component {
