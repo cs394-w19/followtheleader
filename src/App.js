@@ -27,7 +27,6 @@ const Body = styled.div`
   grid-row: 2;
   width: 100%;
   height: 100%;
-  padding-top:75px;
   background-color: #F7F7FF;
 `;
 

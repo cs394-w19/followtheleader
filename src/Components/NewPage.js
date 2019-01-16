@@ -1,20 +1,25 @@
 import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom'
+import data from '../location.json';
 
 class NewPage extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: {}
+    }
+  }
+
+  componentWillMount = () => {
+    this.setState({ location: data.location.filter(location => location.id == this.props.match.params.id)[0]});
+  };
+
   render(){
-    let data = [{'place': 'Main Library', 'tag': 'Worst place on campus',
-                  'distance': '1 miles', 'id': 'main'},
-                {'place': 'Lake Front', 'tag': 'Best place on campus',
-                              'distance': '3 miles', 'id': 'lake'},
-                {'place': 'The Rock', 'tag': 'More paint than rock at this point',
-                              'distance': '5 miles', 'id': 'rock'},
-                {'place': 'Spac', 'tag': 'Get the the Gym!',
-                              'distance': '10 miles', 'id': 'spac'}];
     return(
       <div>
-        <p>hello: {data.filter(data => this.props.match.params.id == data.id)[0].place}</p>
+        <p>{this.state.location.building}</p>
+
       </div>
     );
   }
