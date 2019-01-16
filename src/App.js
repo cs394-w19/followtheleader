@@ -55,25 +55,24 @@ class App extends Component {
   }
 }
 
-const Cards = styled.div`
-`;
-
 const Grid = styled.div`
-  display: grid;
   min-height: 100vh;
-  grid-template-rows: 75px 1fr;
+  overflow:auto;
+  width:100%;
 `;
 
 const Body = styled.div`
   grid-row: 2;
   width: 100%;
   height: 100%;
+  padding-top:75px;
   background-color: #F7F7FF;
 `;
 
 const LoadMore = styled.div`
   margin: 10px 15px;
   text-align: center;
+  max-width:100%;
 
   :hover {
     cursor: pointer;
