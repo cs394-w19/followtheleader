@@ -19,15 +19,20 @@ class App extends Component {
       <Grid>
         <Header/>
         <Body>
-          {data.map((data,index) => (
-            <Card propdata={data}/>
-          ))}
+          <Cards>
+            {data.map((data,index) => (
+              <Card propdata={data}/>
+            ))}
+          </Cards>
           <DistanceSlider handleDistanceChanged={v => console.log(v)} />
         </Body>
       </Grid>
     );
   }
 }
+
+const Cards = styled.div`
+`;
 
 const Grid = styled.div`
   display: grid;
@@ -39,7 +44,7 @@ const Body = styled.div`
   grid-row: 2;
   width: 100%;
   height: 100%;
-  background-color: #eaeaea;
+  background-color: #F7F7FF;
 `;
 
 
