@@ -1,6 +1,12 @@
 {"location": [
 
-  {"id":  "1", "type":  "Library", "building":  "Charles Deering Library", "opened":  "1933", "location":  "1937 Sheridan Road"},
+  {
+  "id":  "1", 
+"type":  "Library", 
+"building":  "Charles Deering Library", 
+"opened":  "1933", 
+"location":  
+"1937 Sheridan Road"},
 {"id":  "2", "type":  "Library", "building":  "Seeley G. Mudd Science and Engineering Library", "opened":  "1977", "location":  "2233 Tech Drive"},
 {"id":  "3", "type":  "Library", "building":  "Northwestern University Library", "opened":  "1970", "location":  "1970 Campus Drive"},
 {"id":  "4", "type":  "Performing arts", "building":  "Marjorie Ward Marshall Dance Center", "opened":  "NA", "location":  "10 Arts Circle Drive"},
