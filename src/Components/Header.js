@@ -6,7 +6,7 @@ class Header extends Component {
     return (
       <Grid>
         <Title>
-          <TitleText>Follow <br/> The <br/> Leader</TitleText>
+          <TitleText>Follow <br/> My <br/> Lead</TitleText>
         </Title>
         <Settings>
           <Hamburger> &#9776; </Hamburger>
@@ -27,12 +27,15 @@ const Grid = styled.div`
   height: 75px;
   background-color: white;
   box-shadow: 0px 2px 1px rgba(0,0,0,0.2);
+  background:#4E2A84;
+  color:white;
 `;
 
 const Title = styled.div`
   margin-left: 15px;
   font-size: 1em;
   grid-column: 1;
+  font-weight:800;
 `;
 
 const TitleText = styled.p`

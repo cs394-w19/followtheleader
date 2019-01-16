@@ -55,6 +55,9 @@ class App extends Component {
   }
 }
 
+const Cards = styled.div`
+`;
+
 const Grid = styled.div`
   display: grid;
   min-height: 100vh;
@@ -65,7 +68,7 @@ const Body = styled.div`
   grid-row: 2;
   width: 100%;
   height: 100%;
-  background-color: #eaeaea;
+  background-color: #F7F7FF;
 `;
 
 const LoadMore = styled.div`
