@@ -1,9 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import Card from './Card.js'
+import Settings from './Settings.js'
+import Header from './Header.js'
+import DistanceSlider from './DistanceSlider'
 
-class NewPage extends Component{
-  render(){
+class HomePage extends Component {
+  render() {
     let data = [{'place': 'Main Library', 'tag': 'Worst place on campus',
                   'distance': '1 miles', 'id': 'main'},
                 {'place': 'Lake Front', 'tag': 'Best place on campus',
@@ -12,12 +16,17 @@ class NewPage extends Component{
                               'distance': '5 miles', 'id': 'rock'},
                 {'place': 'Spac', 'tag': 'Get the the Gym!',
                               'distance': '10 miles', 'id': 'spac'}];
-    return(
+    return (
       <div>
-        <p>hello: {data.filter(data => this.props.match.params.id == data.id)[0].place}</p>
+        {data.map((data,index) => (
+          <Link to={`/location/${data.id}`} style={{textDecoration: 'none'}}>
+            <Card propdata={data}/>
+          </Link>
+        ))}
+        <DistanceSlider handleDistanceChanged={v => console.log(v)} />
       </div>
     );
   }
-}
+};
 
-export default NewPage
+export default HomePage;
