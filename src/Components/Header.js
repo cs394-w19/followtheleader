@@ -20,9 +20,12 @@ const Grid = styled.div`
   grid-row: 1;
   z-index: 1;
   display: grid;
+  position: fixed;
   grid-template-columns: 1fr 1fr;
   vertical-align: middle;
   width: 100%;
+  height: 75px;
+  background-color: white;
   box-shadow: 0px 2px 1px rgba(0,0,0,0.2);
   background:#4E2A84;
   color:white;

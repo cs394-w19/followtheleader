@@ -8,10 +8,10 @@ class Card extends Component{
     return (
       <CardContainer>
         <CardTitle>
-          {data['place']}
+          {data['building']}
         </CardTitle>
         <CardTag>
-          {data['tag']}
+          {data['type']}
         </CardTag>
         <CardDistance>
           {data['distance']}
