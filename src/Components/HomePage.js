@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
 import Card from './Card.js';
-import Settings from './Settings.js';
-import Header from './Header.js';
 import DistanceSlider from './DistanceSlider'
 import data from '../location.json';
 
@@ -43,7 +40,7 @@ class HomePage extends Component {
             .filter(location => location.distance <= this.state.radius)
             .slice(0, this.state.load)
             .map((data,index) => (
-              <Link to={`/location/${data.id}`} style={{textDecoration: 'none'}}>
+              <Link to={`/location/${data.id}`} style={{textDecoration: 'none'}} key={index}>
                 <Card propdata={data}/>
               </Link>
           ))}

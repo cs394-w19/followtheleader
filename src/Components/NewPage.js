@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import data from '../location.json';
 
@@ -13,14 +12,14 @@ class NewPage extends Component{
   }
 
   componentWillMount = () => {
-    this.setState({ location: data.location.filter(location => location.id == this.props.match.params.id)[0]});
+    this.setState({ location: data.location.filter(location => location.id === this.props.match.params.id)[0]});
   };
 
   render(){
-    let google_link = "https:\/\/www.google.com/maps/search/?api=1&query=" + this.state.location.location.replace(/ /g, "+");
+    let google_link = "https://www.google.com/maps/search/?api=1&query=" + this.state.location.location.replace(/ /g, "+");
     let review = "No reviews yet"
     if (this.state.location.review){
-      review = '\"'+ this.state.location.review + '\"'
+      review = '"'+ this.state.location.review + '"'
     }
     console.log(google_link);
     return(
