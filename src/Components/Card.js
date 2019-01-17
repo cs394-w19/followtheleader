@@ -32,6 +32,10 @@ class Card extends Component{
 
 
     let data = this.props.propdata
+    let review = "No reviews yet"
+    if (data['review']){
+      review = '\"'+ data['review']+ '\"'
+    }
     return (
       <CardContainer>
 
@@ -44,6 +48,9 @@ class Card extends Component{
         <CardDistance>
           {data['distance']}
         </CardDistance>
+        <CardReview>
+          {review}
+        </CardReview>
         <CardImage src={"https://static.thenounproject.com/png/82078-200.png"} />
         <Details onClick={Clickme}>&gt;</Details>
         <CustomHR />
@@ -98,6 +105,18 @@ const CardDistance = styled.p`
   color:#AEA3B0;
   padding-left:5px;
   font-size:16px;
+`;
+
+const CardReview = styled.p`
+  margin:0px;
+  padding-left:5px;
+  font-size:16px;
+  font-style: italic;
+  height:20px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+  width:calc(100% - 120px);
 `;
 
 const Details = styled.div`
