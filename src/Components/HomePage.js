@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 import Card from './Card.js';
 import Settings from './Settings.js';
 import Header from './Header.js';
