@@ -8,13 +8,15 @@ import Header from './Header.js';
 import DistanceSlider from './DistanceSlider'
 import data from '../location.json';
 
+const MAX_DISTANCE = 5
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       locations: [],
       load: 8,
-      radius: 2.5,
+      radius: MAX_DISTANCE / 2,
       maxLoad: 0
     }
   }
@@ -48,7 +50,7 @@ class HomePage extends Component {
           {this.state.load < this.state.maxLoad &&
             <LoadMore onClick={this.loadMore}> Load More </LoadMore>}
           <div style={{ height: '4em' }} /> {/* Quick fix so slider doesn't block */}
-          <DistanceSlider handleDistanceChanged={this.updateDistance} numberOfIncrements={10} maxDistance={5} />
+          <DistanceSlider handleDistanceChanged={this.updateDistance} numberOfIncrements={10} maxDistance={MAX_DISTANCE} />
       </div>
     );
   }
