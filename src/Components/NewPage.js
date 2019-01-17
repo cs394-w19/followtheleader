@@ -17,7 +17,11 @@ class NewPage extends Component{
   };
 
   render(){
-    var google_link = "https:\/\/www.google.com/maps/search/?api=1&query=" + this.state.location.location.replace(/ /g, "+");
+    let google_link = "https:\/\/www.google.com/maps/search/?api=1&query=" + this.state.location.location.replace(/ /g, "+");
+    let review = "No reviews yet"
+    if (this.state.location.review){
+      review = '\"'+ this.state.location.review + '\"'
+    }
     console.log(google_link);
     return(
       <div>
@@ -35,7 +39,7 @@ class NewPage extends Component{
             Address: <a href={google_link}>{this.state.location.location}</a>
           </p>
           <p>
-            Reviews: To Be added?
+            Reviews: {review}
           </p>
 
           <CardImage src={"https://static.thenounproject.com/png/82078-200.png"} />
