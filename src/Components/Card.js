@@ -1,9 +1,36 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
-
+import { Redirect } from 'react-router-dom'
+import NewPage from './NewPage.js'
 
 class Card extends Component{
+ // code below is from https://medium.com/@anneeb/redirecting-in-react-4de5e517354a
+ /*
+  state = {redirect: false};
+
+  setRedirect = () => {
+    this.setState({redirect:true})
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <NewPage/>
+    }
+  }
+
+  this goes inside card container
+  {this.renderRedirect()}
+
+  //end of used code
+  */
   render() {
+
+    function Clickme(e) {
+    e.preventDefault();
+    console.log('hello');
+    }
+
+
     let data = this.props.propdata
     let review = "No reviews yet"
     if (data['review']){
@@ -11,6 +38,7 @@ class Card extends Component{
     }
     return (
       <CardContainer>
+
         <CardTitle>
           {data['building']}
         </CardTitle>
@@ -24,12 +52,14 @@ class Card extends Component{
           {review}
         </CardReview>
         <CardImage src={"https://static.thenounproject.com/png/82078-200.png"} />
-        <Details>&gt;</Details>
+        <Details onClick={Clickme}>&gt;</Details>
         <CustomHR />
       </CardContainer>
     );
   }
 }
+
+
 
 const CardContainer = styled.div`
   margin:0px;
@@ -89,7 +119,7 @@ const CardReview = styled.p`
   width:calc(100% - 120px);
 `;
 
-const Details = styled.span`
+const Details = styled.div`
   font-size:28px;
   color:#E3D0D8;
   position:absolute;
