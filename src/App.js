@@ -25,9 +25,7 @@ class App extends Component {
     this.setState({ load: this.state.load + numNewPosts });
   };
 
-  updateDistance = ratio => {
-    let maxRadius = 5;
-    let newRadius = ratio/10*maxRadius;
+  updateDistance = newRadius => {
     let newMaxLoad = this.state.locations.filter(location => location.distance <= newRadius).length;
     this.setState({ radius: newRadius, maxLoad: newMaxLoad, load: 8 });
   };
@@ -35,7 +33,7 @@ class App extends Component {
   render() {
     return (
       <Grid>
-        <Header updateDistance={this.updateDistance} />
+        <Header />
         <Body>
           {this.props.children}
         </Body>

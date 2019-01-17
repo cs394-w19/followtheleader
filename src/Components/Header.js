@@ -9,7 +9,7 @@ class Header extends Component {
         <Title>
           <TitleText>Follow <br/> My <br/> Lead</TitleText>
         </Title>
-        <DistanceSlider handleDistanceChanged={ratio => this.props.updateDistance(ratio)} />
+        {/*<DistanceSlider handleDistanceChanged={ratio => this.props.updateDistance(ratio)} />*/}
       </Grid>
     );
   }

@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import Card from './Card.js';
 import Settings from './Settings.js';
 import Header from './Header.js';
-import DistanceSlider from './DistanceSlider';
+import DistanceSlider from './DistanceSlider'
 import data from '../location.json';
 
 class HomePage extends Component {
@@ -17,8 +17,6 @@ class HomePage extends Component {
       radius: 2.5,
       maxLoad: 0
     }
-
-    this.updateDistance = this.updateDistance.bind(this);
   }
 
   componentWillMount = () => {
@@ -40,6 +38,9 @@ class HomePage extends Component {
   render() {
     return (
       <div>
+        <div>
+          <DistanceSlider handleDistanceChanged={ratio => this.updateDistance(ratio)} numberOfIncrements={10} maxDistance={5} />
+        </div>
         {this.state.locations
             .filter(location => location.distance <= this.state.radius)
             .slice(0, this.state.load)
@@ -50,8 +51,6 @@ class HomePage extends Component {
           ))}
           {this.state.load < this.state.maxLoad &&
             <LoadMore onClick={this.loadMore}> Load More </LoadMore>}
-          <DistanceSlider handleDistanceChanged={ratio => this.updateDistance(ratio)} />
-          Radius: {this.state.radius} Miles
       </div>
     );
   }
