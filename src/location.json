@@ -1,10 +1,10 @@
 {"location": [
 
-{"id":  "1", 
-"type":  "Library", 
-"building":  "Charles Deering Library", 
-"distance":  "2.90", 
-"opened":  "1933", 
+{"id":  "1",
+"type":  "Library",
+"building":  "Charles Deering Library",
+"distance":  "2.90",
+"opened":  "1933",
 "location":  "1937 Sheridan Road"},
 
 {"id":  "2", "type":  "Library", "building":  "Seeley G. Mudd Science and Engineering Library", "distance":  "3.90", "opened":  "1977", "location":  "2233 Tech Drive"},
