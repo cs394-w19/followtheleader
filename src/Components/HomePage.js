@@ -28,9 +28,7 @@ class HomePage extends Component {
     this.setState({ load: this.state.load + numNewPosts });
   };
 
-  updateDistance = ratio => {
-    let maxRadius = 5;
-    let newRadius = ratio/10*maxRadius;
+  updateDistance = newRadius => {
     let newMaxLoad = this.state.locations.filter(location => location.distance <= newRadius).length;
     this.setState({ radius: newRadius, maxLoad: newMaxLoad, load: 8 });
   };
@@ -38,9 +36,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <div>
-          <DistanceSlider handleDistanceChanged={ratio => this.updateDistance(ratio)} numberOfIncrements={10} maxDistance={5} />
-        </div>
+        <h2>Within {this.state.radius} mile(s):</h2>
         {this.state.locations
             .filter(location => location.distance <= this.state.radius)
             .slice(0, this.state.load)
@@ -51,6 +47,8 @@ class HomePage extends Component {
           ))}
           {this.state.load < this.state.maxLoad &&
             <LoadMore onClick={this.loadMore}> Load More </LoadMore>}
+          <div style={{ height: '4em' }} /> {/* Quick fix so slider doesn't block */}
+          <DistanceSlider handleDistanceChanged={this.updateDistance} numberOfIncrements={10} maxDistance={5} />
       </div>
     );
   }

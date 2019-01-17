@@ -8,9 +8,9 @@ export default class DistanceSlider extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // currentValue is the raw value of the HTML `input` element.
+      // selectedValue is the raw value of the HTML `input` element.
       // The current distance is computed from this divided by props.numberOfIncrements.
-      currentValue: props.numberOfIncrements / 2
+      selectedValue: props.numberOfIncrements / 2
     }
   }
 
@@ -25,42 +25,52 @@ export default class DistanceSlider extends Component {
   handleSlider = event => {
     const newValue = event.target.value
     this.setState({
-      currentValue: newValue
-    }, () => {
-      const newDistance = this.currentDistance()
-      this.props.handleDistanceChanged(newDistance)
+      selectedValue: newValue
     })
+  }
+
+  handleSubmit = () => {
+    const newDistance = this.currentDistance()
+    this.props.handleDistanceChanged(newDistance)
   }
 
   /// Computes the current distance being represented.
   currentDistance = () => {
-    return this.state.currentValue / this.props.numberOfIncrements * this.props.maxDistance
+    return this.state.selectedValue / this.props.numberOfIncrements * this.props.maxDistance
   }
 
   render() {
     return (
       <Container>
-        <Slider type="range" min={0} max={this.props.numberOfIncrements} value={this.state.currentValue} onChange={this.handleSlider} />
-        <Radius>Radius: {this.currentDistance()} Miles</Radius>
+        <Slider type="range" min={0} max={this.props.numberOfIncrements} value={this.state.selectedValue} onChange={this.handleSlider} />
+        <div>
+          <Button onClick={this.handleSubmit}>Apply search radius: {this.currentDistance()} Mile(s)</Button>
+        </div>
       </Container>
     )
   }
 }
 
 const Container = styled.div`
-  // grid-column: 2;
-  // position: relative;
-  // top: 50%;
-  // transform: translateY(-50%);
-  // width: 100%;
+  bottom: 0;
+  width: 100%;
   text-align: center;
+  position: fixed;
+  z-index: 5;
+  background-color: rgba(78, 42, 132, .5);
 `
 
 const Slider = styled.input`
-  width: 90%;
-  text-align: center;
+  width: 66.7%;
 `
 
-const Radius = styled.p`
-  margin: 0;
+const Button = styled.button`
+  font-size: 1em;
+  color: white;
+  background-color: #75b;
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.3em;
+  font-weight: bold;
+  cursor: pointer;
 `
