@@ -20,7 +20,7 @@ class HomePage extends Component {
   }
 
   componentWillMount = () => {
-    this.setState({ locations: data.location, maxLoad: data.location.filter(location => location.distance <= this.state.radius).length });
+    this.setState({ locations: data.location.sort((l1, l2) => l1.distance > l2.distance), maxLoad: data.location.filter(location => location.distance <= this.state.radius).length });
   };
 
   loadMore = () => {
