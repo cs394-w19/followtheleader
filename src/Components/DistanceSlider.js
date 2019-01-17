@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 /// The component that lets the user select the distance for places to see.
 /// Pass a prop called handleDistanceChanged as a function to handle the new distance selected.
@@ -27,7 +28,27 @@ export default class DistanceSlider extends Component {
 
     render() {
         return (
-            <input type="range" min={0} max={this._maxDistance} value={this.state.currentDistance} onChange={this.handleSlider} />
+            <Container>
+                <Slider type="range" min={0} max={this._maxDistance} value={this.state.currentDistance} onChange={this.handleSlider} />
+                <Radius>Radius: {this.state.currentDistance} Miles</Radius>
+            </Container>
         )
     }
 }
+
+const Container = styled.div`
+    grid-column: 2;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+`
+
+const Slider = styled.input`
+    width: 100%;
+`
+
+const Radius = styled.p`
+    margin: 0;
+`

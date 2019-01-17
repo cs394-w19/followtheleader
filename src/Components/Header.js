@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import DistanceSlider from './DistanceSlider'
 
 class Header extends Component {
   render() {
@@ -8,9 +9,7 @@ class Header extends Component {
         <Title>
           <TitleText>Follow <br/> My <br/> Lead</TitleText>
         </Title>
-        <Settings>
-          <Hamburger> &#9776; </Hamburger>
-        </Settings>
+        <DistanceSlider handleDistanceChanged={ratio => this.props.updateDistance(ratio)} />
       </Grid>
     );
   }
@@ -40,12 +39,6 @@ const TitleText = styled.p`
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-`;
-
-const Settings = styled.div`
-  grid-column: 2;
-  width: 100%;
-  position: relative;
 `;
 
 const Hamburger = styled.p`
