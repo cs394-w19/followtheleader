@@ -1,7 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom'
-import NewPage from './NewPage.js'
 
 class Card extends Component{
  // code below is from https://medium.com/@anneeb/redirecting-in-react-4de5e517354a
@@ -34,7 +32,7 @@ class Card extends Component{
     let data = this.props.propdata
     let review = "No reviews yet"
     if (data['review']){
-      review = '\"'+ data['review']+ '\"'
+      review = '"'+ data['review']+ '"'
     }
     return (
       <CardContainer>

@@ -9,7 +9,7 @@ class Header extends Component {
           <TitleText>Follow <br/> My <br/> Lead</TitleText>
         </Title>
         <Settings>
-          <Hamburger> &#9776; </Hamburger>
+          <Hamburger>&#9776;</Hamburger>
         </Settings>
       </Grid>
     );

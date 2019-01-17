@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
 import Card from './Card.js';
-import Settings from './Settings.js';
-import Header from './Header.js';
-import DistanceSlider from './DistanceSlider';
+import DistanceSlider from './DistanceSlider'
 import data from '../location.json';
+
+const MAX_DISTANCE = 5
 
 class HomePage extends Component {
   constructor(props) {
@@ -14,15 +13,13 @@ class HomePage extends Component {
     this.state = {
       locations: [],
       load: 8,
-      radius: 2.5,
+      radius: MAX_DISTANCE / 2,
       maxLoad: 0
     }
-
-    this.updateDistance = this.updateDistance.bind(this);
   }
 
   componentWillMount = () => {
-    this.setState({ locations: data.location, maxLoad: data.location.filter(location => location.distance <= this.state.radius).length });
+    this.setState({ locations: data.location.sort((l1, l2) => l1.distance > l2.distance), maxLoad: data.location.filter(location => location.distance <= this.state.radius).length });
   };
 
   loadMore = () => {
@@ -30,9 +27,7 @@ class HomePage extends Component {
     this.setState({ load: this.state.load + numNewPosts });
   };
 
-  updateDistance = ratio => {
-    let maxRadius = 5;
-    let newRadius = ratio/10*maxRadius;
+  updateDistance = newRadius => {
     let newMaxLoad = this.state.locations.filter(location => location.distance <= newRadius).length;
     this.setState({ radius: newRadius, maxLoad: newMaxLoad, load: 8 });
   };
@@ -40,18 +35,19 @@ class HomePage extends Component {
   render() {
     return (
       <div>
+        <h2>Within {this.state.radius} mile(s):</h2>
         {this.state.locations
             .filter(location => location.distance <= this.state.radius)
             .slice(0, this.state.load)
             .map((data,index) => (
-              <Link to={`/location/${data.id}`} style={{textDecoration: 'none'}}>
+              <Link to={`/location/${data.id}`} style={{textDecoration: 'none'}} key={index}>
                 <Card propdata={data}/>
               </Link>
           ))}
           {this.state.load < this.state.maxLoad &&
             <LoadMore onClick={this.loadMore}> Load More </LoadMore>}
-          <DistanceSlider handleDistanceChanged={ratio => this.updateDistance(ratio)} />
-          Radius: {this.state.radius} Miles
+          <div style={{ height: '4em' }} /> {/* Quick fix so slider doesn't block */}
+          <DistanceSlider handleDistanceChanged={this.updateDistance} numberOfIncrements={10} maxDistance={MAX_DISTANCE} />
       </div>
     );
   }
