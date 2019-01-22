@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import logo from '../image/logo_white.png'
 
 class Header extends Component {
   render() {
@@ -27,6 +28,10 @@ const Grid = styled.div`
   background:#4E2A84;
   color:white;
 `;
+
+// const Logo = styled.img`
+//
+// `
 
 const Title = styled.div`
   margin-left: 15px;

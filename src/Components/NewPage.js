@@ -28,26 +28,32 @@ class NewPage extends Component{
           <Link to={``} style={{textDecoration: 'none'}}>
             <Hamburger> &#8592; </Hamburger>
           </Link>
-          <p>
-            {this.state.location.building}
-          </p>
-          <p>
-            Distance from you: {this.state.location.distance} miles
-          </p>
-          <p>
-            Address: <a href={google_link}>{this.state.location.location}</a>
-          </p>
-          <p>
-            Reviews: {review}
-          </p>
+          <TextHolder>
+            <CardTitle>
+              {this.state.location.building}
+            </CardTitle>
+            <p>
+              Distance from you: {this.state.location.distance} miles
+            </p>
+            <p>
+              Address: <a href={google_link}>{this.state.location.location}</a>
+            </p>
+            <p>
+              Reviews: {review}
+            </p>
+          </TextHolder>
 
-          <CardImage src={"https://static.thenounproject.com/png/82078-200.png"} />
+          <CardImage src={"https://upload.wikimedia.org/wikipedia/en/d/d1/Image_not_available.png"} />
 
         </NewPageText>
       </div>
     );
   }
 }
+
+const TextHolder = styled.div`
+  display:inline-block;
+`;
 
 const Hamburger = styled.p`
   position: relative;
@@ -65,8 +71,17 @@ const CardImage = styled.img`
 `;
 
 const NewPageText = styled.div`
-  float:left;
   display:inline-block;
+  width:100%;
+
+`;
+
+const CardTitle = styled.p`
+  margin:0px;
+  font-size:24px;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+  width:calc(100% - 120px);
 `;
 
 export default NewPage
