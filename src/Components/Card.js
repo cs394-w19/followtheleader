@@ -49,7 +49,7 @@ class Card extends Component{
         <CardReview>
           {review}
         </CardReview>
-        <CardImage src={"https://static.thenounproject.com/png/82078-200.png"} />
+        <CardImage src={"https://upload.wikimedia.org/wikipedia/en/d/d1/Image_not_available.png"} />
         <Details onClick={Clickme}>&gt;</Details>
         <CustomHR />
       </CardContainer>
