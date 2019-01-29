@@ -1,11 +1,11 @@
 {"location": [
 {
-	"id": "1", 
+	"id": "1",
 	"type": "Library",
-	"building": "Charles Deering Library", 
-	"distance": "2.90", 
-	"opened":  "1933", 
-	"location": "1937 Sheridan Road", 
+	"building": "Charles Deering Library",
+	"distance": "2.90",
+	"opened":  "1933",
+	"location": "1937 Sheridan Road",
 	"review":  "A really beautiful place!"
 },
 
@@ -79,5 +79,7 @@
 {"id":  "69", "type":  "Administrative", "building":  "Music Administration Building", "distance":  "3.64", "opened":  "1874", "location":  "711 Elgin Road", "review":  ""},
 {"id":  "70", "type":  "Administrative", "building":  "Norris University Center", "distance":  "2.86", "opened":  "1972", "location":  "1999 Campus Drive", "review":  ""},
 {"id":  "71", "type":  "Administrative", "building":  "Rebecca Crown Center", "distance":  "3.91", "opened":  "1968", "location":  "633 Clark Street", "review":  ""},
-{"id":  "72", "type":  "Administrative", "building":  "Segal Visitors Center", "distance":  "3.81", "opened":  "NA", "location":  "1841 Sheridan Rd", "review":  ""}]
+{"id":  "72", "type":  "Administrative", "building":  "Segal Visitors Center", "distance":  "3.81", "opened":  "NA", "location":  "1841 Sheridan Rd", "review":  ""}],
+
+"types": ["Administrative", "Athletic", "Religious", "Academic", "Science and technology", "Performing arts", "Library"]
 }

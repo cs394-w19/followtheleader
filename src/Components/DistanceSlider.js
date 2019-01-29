@@ -26,7 +26,7 @@ export default class DistanceSlider extends Component {
     const newValue = event.target.value
     this.setState({
       selectedValue: newValue
-    })
+    }, this.handleSubmit)
   }
 
   handleSubmit = () => {
@@ -43,25 +43,19 @@ export default class DistanceSlider extends Component {
     return (
       <Container>
         <Slider type="range" min={0} max={this.props.numberOfIncrements} value={this.state.selectedValue} onChange={this.handleSlider} />
-        <div>
-          <Button onClick={this.handleSubmit}>Apply search radius: {this.currentDistance()} Mile(s)</Button>
-        </div>
       </Container>
     )
   }
 }
 
 const Container = styled.div`
-  bottom: 0;
   width: 100%;
   text-align: center;
-  position: fixed;
   z-index: 5;
-  background-color: rgba(78, 42, 132, .5);
 `
 
 const Slider = styled.input`
-  width: 66.7%;
+  width: calc(100% * 2/3);
 `
 
 const Button = styled.button`
