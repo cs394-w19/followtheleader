@@ -15,7 +15,11 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    this.setState({ locations: data.location, maxLoad: data.location.filter(location => location.distance <= this.state.radius).length });
+    this.setState({
+      locations: data.location,
+      maxLoad: data.location.filter(location => location.distance <= this.state.radius).length,
+      locationTypes: data.types
+     });
   };
 
   loadMore = () => {

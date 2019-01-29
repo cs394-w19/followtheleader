@@ -27,6 +27,7 @@ const Grid = styled.div`
   box-shadow: 0px 2px 1px rgba(0,0,0,0.2);
   background:#4E2A84;
   color:white;
+  min-height: 75px;
 `;
 
 // const Logo = styled.img`

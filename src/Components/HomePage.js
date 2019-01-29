@@ -14,12 +14,18 @@ class HomePage extends Component {
       locations: [],
       load: 8,
       radius: MAX_DISTANCE / 2,
-      maxLoad: 0
+      maxLoad: 0,
+      filterOpen: false,
+      filterType: new RegExp('.*')
     }
   }
 
   componentWillMount = () => {
-    this.setState({ locations: data.location.sort((l1, l2) => l1.distance > l2.distance), maxLoad: data.location.filter(location => location.distance <= this.state.radius).length });
+    this.setState({
+      locations: data.location.sort((l1, l2) => l1.distance > l2.distance),
+      maxLoad: data.location.filter(location => location.distance <= this.state.radius).length,
+      locationTypes: data.types
+     });
   };
 
   loadMore = () => {
@@ -28,16 +34,46 @@ class HomePage extends Component {
   };
 
   updateDistance = newRadius => {
-    let newMaxLoad = this.state.locations.filter(location => location.distance <= newRadius).length;
+    let newMaxLoad = this.state.locations.filter(
+      location => location.distance <= newRadius && this.state.filterType.test(location.type)
+    ).length;
     this.setState({ radius: newRadius, maxLoad: newMaxLoad, load: 8 });
   };
+
+  handleTypeChange = type => {
+    let pattern;
+    if (type == "All") {
+      pattern = new RegExp('.*')
+    } else {
+      pattern = new RegExp(type)
+    }
+    let newMaxLoad = this.state.locations.filter(
+      location => location.distance <= this.state.radius && pattern.test(location.type)
+    ).length;
+    this.setState({ filterType: pattern, maxLoad: newMaxLoad })
+  }
 
   render() {
     return (
       <div>
+        <FilterWindow open={this.state.filtersOpen}>
+          <FilterText onClick={() => this.setState({ filtersOpen: !this.state.filtersOpen})}>
+            Filters {this.state.filtersOpen ? '\u25B2' : '\u25BC'}
+          </FilterText>
+          Radius:
+          <DistanceSlider handleDistanceChanged={this.updateDistance} numberOfIncrements={10} maxDistance={MAX_DISTANCE} />
+          Location Type:
+          <select onChange={option => this.handleTypeChange(option.target.value)}>
+            <option value="All"> All </option>
+            {this.state.locationTypes.map(type => (
+              <option value={type}>{type}</option>
+            ))}
+          </select>
+
+        </FilterWindow>
         <h2>Within {this.state.radius} mile(s):</h2>
         {this.state.locations
-            .filter(location => location.distance <= this.state.radius)
+            .filter(location => location.distance <= this.state.radius && this.state.filterType.test(location.type))
             .slice(0, this.state.load)
             .map((data,index) => (
               <Link to={`/location/${data.id}`} style={{textDecoration: 'none'}} key={index}>
@@ -47,11 +83,24 @@ class HomePage extends Component {
           {this.state.load < this.state.maxLoad &&
             <LoadMore onClick={this.loadMore}> Load More </LoadMore>}
           <div style={{ height: '4em' }} /> {/* Quick fix so slider doesn't block */}
-          <DistanceSlider handleDistanceChanged={this.updateDistance} numberOfIncrements={10} maxDistance={MAX_DISTANCE} />
       </div>
     );
   }
 };
+
+const FilterWindow = styled.div`
+  height: ${props => props.open ? 'auto' : '16px'};
+  overflow: hidden;
+`
+
+const FilterText = styled.p`
+  text-align: center;
+  margin-top: 0;
+
+  :hover {
+    cursor: pointer;
+  }
+`
 
 const LoadMore = styled.div`
   margin: 10px 15px;
