@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Card from './Card.js';
 import DistanceSlider from './DistanceSlider'
-import data from '../location.json';
+import { withFirebase } from './Firebase';
 
 const MAX_DISTANCE = 5
 
@@ -12,6 +12,7 @@ class HomePage extends Component {
     super(props);
     this.state = {
       locations: [],
+      locationTypes: [],
       load: 8,
       radius: MAX_DISTANCE / 2,
       maxLoad: 0,
@@ -21,11 +22,23 @@ class HomePage extends Component {
   }
 
   componentWillMount = () => {
-    this.setState({
-      locations: data.location.sort((l1, l2) => l1.distance > l2.distance),
-      maxLoad: data.location.filter(location => location.distance <= this.state.radius).length,
-      locationTypes: data.types
+    this.props.firebase.locations().on('value', snapshot => {
+      var data = snapshot.val();
+      this.setState({
+        locations: data.sort((l1, l2) => l1.distance > l2.distance),
+        maxLoad: data.filter(location => location.distance <= this.state.radius).length
+      });
      });
+    this.props.firebase.types().on('value', snapshot => {
+      this.setState({
+       locationTypes: snapshot.val()
+      });
+    });
+  };
+
+  componentWillUnmount = () => {
+    this.props.firebase.locations().off();
+    this.props.firebase.types().off();
   };
 
   loadMore = () => {
@@ -111,5 +124,6 @@ const LoadMore = styled.div`
     cursor: pointer;
   }
 `
+HomePage = withFirebase(HomePage);
 
 export default HomePage;
