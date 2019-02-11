@@ -11,11 +11,15 @@ class NewPage extends Component{
     }
   }
 
+  sayHello = () => {
+    console.log("hello");
+  }
+
   componentWillMount = () => {
     this.setState({ location: data.location.filter(location => location.id === this.props.match.params.id)[0]});
   };
-
   render(){
+
     let google_link = "https://www.google.com/maps/search/?api=1&query=" + this.state.location.location.replace(/ /g, "+");
     let review = "No reviews yet"
     if (this.state.location.review){
@@ -41,15 +45,21 @@ class NewPage extends Component{
             <p>
               Reviews: {review}
             </p>
+            <button type="button" onClick={this.sayHello}>Add a Review</button>
           </TextHolder>
 
           <CardImage src={"https://upload.wikimedia.org/wikipedia/en/d/d1/Image_not_available.png"} />
+          <PhotoButtons type="button" onClick={this.sayHello}>Add a Photo</PhotoButtons>
 
         </NewPageText>
       </div>
     );
   }
 }
+
+const PhotoButtons = styled.button`
+  float:right;
+`
 
 const TextHolder = styled.div`
   display:inline-block;
