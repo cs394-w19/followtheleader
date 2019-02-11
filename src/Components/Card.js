@@ -28,7 +28,6 @@ class Card extends Component{
     console.log('hello');
     }
 
-
     let data = this.props.propdata
     let review = "No reviews yet"
     if (data['review']){
@@ -56,8 +55,6 @@ class Card extends Component{
     );
   }
 }
-
-
 
 const CardContainer = styled.div`
   margin:0px;

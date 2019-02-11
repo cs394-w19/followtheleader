@@ -4,7 +4,14 @@ import './index.css';
 import SiteRoutes from './SiteRoutes';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<SiteRoutes />, document.getElementById('root'));
+import Firebase, { FirebaseContext } from './Components/Firebase';
+
+ReactDOM.render(
+  <FirebaseContext.Provider value={new Firebase()}>
+    <SiteRoutes />
+  </FirebaseContext.Provider>,
+  document.getElementById('root'),
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

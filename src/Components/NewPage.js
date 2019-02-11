@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import data from '../location.json';
+import { withFirebase } from './Firebase';
 
 class NewPage extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      location: {}
+      location: ""
     }
   }
 
-  sayHello = () => {
-    console.log("hello");
-  }
+  componentDidMount = () => {
+    this.props.firebase.locations().on('value', snapshot => {
+      var place = snapshot.val().filter(location => location.id == this.props.match.params.id)[0];
+      this.setState({
+        location: place
+      });
+    });
+  };
 
-  componentWillMount = () => {
-    this.setState({ location: data.location.filter(location => location.id === this.props.match.params.id)[0]});
+  componentWillUnmount = () => {
+    this.props.firebase.locations().off();
   };
   render(){
-
+    if (this.state.location == ""){
+      return null
+    }
     let google_link = "https://www.google.com/maps/search/?api=1&query=" + this.state.location.location.replace(/ /g, "+");
     let review = "No reviews yet"
     if (this.state.location.review){
@@ -34,7 +41,7 @@ class NewPage extends Component{
           </Link>
           <TextHolder>
             <CardTitle>
-              {this.state.location.building}
+              {this.state.building}
             </CardTitle>
             <p>
               Distance from you: {this.state.location.distance} miles
@@ -93,5 +100,7 @@ const CardTitle = styled.p`
   text-overflow: ellipsis;
   width:calc(100% - 120px);
 `;
+
+ NewPage = withFirebase(NewPage);
 
 export default NewPage

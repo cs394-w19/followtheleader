@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Header from './Components/Header.js'
-import data from './location.json';
+import { withFirebase } from './Components/Firebase';
 
 class App extends Component {
   constructor(props) {
@@ -15,11 +15,23 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    this.setState({
-      locations: data.location,
-      maxLoad: data.location.filter(location => location.distance <= this.state.radius).length,
-      locationTypes: data.types
+    this.props.firebase.locations().on('value', snapshot => {
+      var data = snapshot.val();
+      this.setState({
+        locations: data.sort((l1, l2) => l1.distance > l2.distance),
+        maxLoad: data.filter(location => location.distance <= this.state.radius).length
+      });
      });
+    this.props.firebase.types().on('value', snapshot => {
+      this.setState({
+       locationTypes: snapshot.val()
+      });
+    });
+  };
+
+  componentWillUnmount = () => {
+    this.props.firebase.locations().off();
+    this.props.firebase.types().off();
   };
 
   loadMore = () => {
@@ -56,5 +68,8 @@ const Body = styled.div`
   height: 100%;
   background-color: #F7F7FF;
 `;
+
+App = withFirebase(App);
+
 
 export default App;
