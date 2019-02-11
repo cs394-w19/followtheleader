@@ -23,7 +23,6 @@ class NewPage extends Component{
   componentWillUnmount = () => {
     this.props.firebase.locations().off();
   };
-
   render(){
     if (this.state.location == ""){
       return null
@@ -53,15 +52,21 @@ class NewPage extends Component{
             <p>
               Reviews: {review}
             </p>
+            <button type="button" onClick={this.sayHello}>Add a Review</button>
           </TextHolder>
 
           <CardImage src={"https://upload.wikimedia.org/wikipedia/en/d/d1/Image_not_available.png"} />
+          <PhotoButtons type="button" onClick={this.sayHello}>Add a Photo</PhotoButtons>
 
         </NewPageText>
       </div>
     );
   }
 }
+
+const PhotoButtons = styled.button`
+  float:right;
+`
 
 const TextHolder = styled.div`
   display:inline-block;
