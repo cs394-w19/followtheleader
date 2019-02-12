@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { withFirebase } from './Firebase';
+import SubmitForm from './SubmitForm.js'
 
 class NewPage extends Component{
   constructor(props) {
@@ -23,6 +24,7 @@ class NewPage extends Component{
   componentWillUnmount = () => {
     this.props.firebase.locations().off();
   };
+
   render(){
     if (this.state.location == ""){
       return null
@@ -30,9 +32,15 @@ class NewPage extends Component{
     let google_link = "https://www.google.com/maps/search/?api=1&query=" + this.state.location.location.replace(/ /g, "+");
     let review = "No reviews yet"
     if (this.state.location.review){
-      review = '"'+ this.state.location.review + '"'
+      review = "";
+      var review_array = this.state.location.review.split("\n");
+      console.log(review_array);
+      for(var rev in review_array){
+        review += '"'+ review_array[rev] + '" ';
+      }
     }
-    console.log(google_link);
+    // console.log(google_link);
+    // console.log(this.state.location)
     return(
       <div>
         <NewPageText>
@@ -52,7 +60,11 @@ class NewPage extends Component{
             <p>
               Reviews: {review}
             </p>
-            <button type="button" onClick={this.sayHello}>Add a Review</button>
+
+            <SubmitForm data={this.props.firebase.locations()}
+                        loc={this.state.location}/>
+
+
           </TextHolder>
 
           <CardImage src={"https://upload.wikimedia.org/wikipedia/en/d/d1/Image_not_available.png"} />
